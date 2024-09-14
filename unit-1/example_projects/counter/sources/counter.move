@@ -6,10 +6,7 @@ module counter::counter {
     }
 
     public fun mint(recipient: address, ctx: &mut TxContext) {
-        let counter = Counter {
-            id: object::new(ctx),
-            times: 0,
-        };
+        let counter = new(ctx);
         transfer::public_transfer(counter, recipient);
     }
 
@@ -23,5 +20,12 @@ module counter::counter {
             ..
         } = counter;
         object::delete(id);
+    }
+
+    fun new(ctx: &mut TxContext): Counter {
+        Counter {
+            id: object::new(ctx),
+            times: 0,
+        }
     }
 }
