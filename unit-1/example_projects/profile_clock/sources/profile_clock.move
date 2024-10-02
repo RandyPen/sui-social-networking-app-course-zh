@@ -41,5 +41,13 @@ module profile_clock::profile_clock {
         }
     }
 
+    public fun points(profile: &Profile): u64 {
+        profile.points
+    }
+
+    public fun last_time(profile: &Profile): u64 {
+        profile.last_time
+    }
+
 }
 
