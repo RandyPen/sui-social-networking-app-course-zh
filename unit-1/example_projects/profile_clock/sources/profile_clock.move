@@ -32,7 +32,7 @@ module profile_clock::profile_clock {
         object::delete(id);
     }
 
-    fun new(handle: String, ctx: &mut TxContext): Profile {
+    public fun new(handle: String, ctx: &mut TxContext): Profile {
         Profile {
             id: object::new(ctx),
             handle,
