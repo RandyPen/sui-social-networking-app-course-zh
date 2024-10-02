@@ -8,9 +8,10 @@ module profile_epoch_time::profile_epoch_time {
         last_time: u64,
     }
 
-    public fun mint(recipient: address, handle: String, ctx: &mut TxContext) {
+    public fun mint(handle: String, ctx: &mut TxContext) {
+        let sender = ctx.sender();
         let profile = new(handle, ctx);
-        transfer::transfer(profile, recipient);
+        transfer::transfer(profile, sender);
     }
 
     public fun click(profile: &mut Profile, ctx: &TxContext) {
