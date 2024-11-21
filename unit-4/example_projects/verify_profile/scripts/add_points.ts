@@ -29,8 +29,6 @@ const profile_data = profile_info.data!.content!.fields;
 const profile_last_time = profile_data.last_time;
 const add_points = 10;
 const sign_bytedata = await signMessage(profile_id, add_points, profile_last_time);
-console.log(sign_bytedata);
-console.log("test");
 
 const PACKAGE: string = '0xeae0ae9f148538131e4022fb4e5ec72336a61c10601d26a1957bb02fb7d3da83';
 const tx = new Transaction();
@@ -46,7 +44,6 @@ tx.moveCall({
     ],
 });
 tx.setSender(address);
-console.log(tx.getData().inputs);
 const dataSentToFullnode = await tx.build({ client: client });
 const result = await client.dryRunTransactionBlock({
     transactionBlock: dataSentToFullnode,

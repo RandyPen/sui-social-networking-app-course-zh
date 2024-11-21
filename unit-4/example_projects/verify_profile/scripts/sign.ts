@@ -36,18 +36,16 @@ const add_points = 10;
 
 export const signMessage = async(id: string, add_points: number, last_time: number): Promise<Uint8Array> => {
     const profile_data = bcs.struct('Profile', {
-        id: bcs.string(),
+        id: bcs.Address,
         add_points: bcs.u64(),
         last_time: bcs.u64(),
     });
-    const profile_bytedata = profile_data.serialize({ id: id, add_points: add_points, last_time: last_time }).toBytes();
-    console.log(profile_bytedata)
-    const hash = keccak256(profile_bytedata);
-    console.log(hash)
-    const hash_bytes = fromHex(hash);
-    const signature_bytes = await keypair.sign(hash_bytes);
+    const profile_bytedata = profile_data.serialize({ id: id, add_points: add_points, last_time: last_time }).toBytes(); // Bytes
+    const hash = keccak256(profile_bytedata); // Hex
+    const hash_bytes = fromHex(hash); // Bytes
+    const signature_bytes = await keypair.sign(hash_bytes); // Bytes
     return signature_bytes;
 }
 
 const sign_bytedata = await signMessage(profile_id, add_points, profile_last_time);
-console.log(sign_bytedata);
+// console.log(sign_bytedata);
