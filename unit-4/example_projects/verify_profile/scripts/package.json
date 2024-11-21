@@ -9,7 +9,6 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "@ethersproject/keccak256": "^5.7.0",
     "@mysten/sui": "^1.15.0",
     "js-sha3": "^0.9.3"
   }
