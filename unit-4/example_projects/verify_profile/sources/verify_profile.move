@@ -55,7 +55,7 @@ public fun add_points(
     let hash_data = hash::keccak256(&byte_data);
     let pk = PK;
     let verify = ed25519::ed25519_verify(&sig, &pk, &hash_data);
-    assert!(verify == true);
+    assert!(verify == true, 1);
 
     profile.points = profile.points + add_points;
     profile.last_time = clock.timestamp_ms();
