@@ -1,6 +1,7 @@
 import { getFullnodeUrl, SuiClient } from "@mysten/sui/client";
 import { Transaction } from "@mysten/sui/transactions";
 import { normalizeSuiAddress } from '@mysten/sui/utils';
+import { bcs } from '@mysten/sui/bcs';
 
 const client = new SuiClient({
     url: getFullnodeUrl("testnet"),
@@ -23,4 +24,5 @@ const res = await client.devInspectTransactionBlock({
     sender: normalizeSuiAddress(address),
     transactionBlock: tx,
 });
-console.log(res?.results?.[0]?.returnValues?.[0]?.[0]);
+const value = bcs.u64().parse(new Uint8Array(res?.results?.[0]?.returnValues?.[0]?.[0]!));
+console.log(value);
