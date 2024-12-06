@@ -25,7 +25,7 @@ tx.moveCall({
     module: "profile_clock",
     function: "click",
     arguments: [
-        tx.object(profile),
+        profile,
         tx.object("0x6"),
     ],
 });
@@ -34,7 +34,7 @@ tx.moveCall({
     module: "profile_clock",
     function: "burn",
     arguments: [
-        tx.object(profile),
+        profile,
     ],
 });
 const result = await client.signAndExecuteTransaction({ signer: keypair, transaction: tx });
